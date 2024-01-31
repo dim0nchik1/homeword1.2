@@ -37,8 +37,9 @@ for div_tag in divs_tag:
 
 
         company_tags = soup1.find('span', class_="vacancy-company-name")
-        company_tag = company_tags.find('span')
-        company_text = company_tag.text
+        company_tag = company_tags.find('span').text
+        company_tag = company_tag.replace('\xa0', ' ')
+
 
         city_tags = soup1.find('div', class_="bloko-columns-row")
         city_tag = city_tags.find('p', class_="vacancy-creation-time-redesigned").text
@@ -48,7 +49,7 @@ for div_tag in divs_tag:
         list_all.append({
             'link': absolutely_link,
             'salary': salary,
-            'company': company_text,
+            'company': company_tag,
             'city': city_tag
         })
 
